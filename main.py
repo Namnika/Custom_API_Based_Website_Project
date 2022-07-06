@@ -27,6 +27,10 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # *****CONNECT TO DB********
+uri = os.getenv("DATABASE_URL")
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL1', 'sqlite:///arts-album.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -148,7 +152,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(250), unique=True, nullable=False)  # should be checked by username
 
 
-# db.create_all()
+db.create_all()
 
 class Adminart(db.Model):
     __tablename__ = "artist_artworks"
@@ -185,7 +189,7 @@ class Adminart(db.Model):
     admin = relationship('User', back_populates='arts')
 
 
-# db.create_all()
+db.create_all()
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -199,7 +203,7 @@ class Comment(db.Model):
     body = db.Column(db.Text, nullable=False)
 
 
-# db.create_all()
+db.create_all()
 
 def admin_only(f):
     @wraps(f)
