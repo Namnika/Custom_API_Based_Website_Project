@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/assets/dist/css/style.css">
+
+</head>
+
+<body class="img js-fullheight">
+{% block content %}
+<header style="background-image: url('https://images.unsplash.com/photo-1519449063122-df59c9231245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bW91bnRhaW58ZW58MHwwfDB8YmxhY2t8&auto=format&fit=crop&w=1007&q=761.65')">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+					{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					{% for message in messages %}
+					<p class="flashes" style="color: yellow;">{{ message }}</p>
+					{% endfor %}
+					{% endif %}
+					{% endwith %}
+                    <h2 class="heading-section">Login</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center">Have an account?</h3>
+                        <form method="POST" action="{{ url_for('login') }}" class="signin-form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" required="" placeholder="Email" value="{{ form.Email }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" required placeholder="Password" value="{{ form.Password }}">
+                                <span toggle="#password-field"
+                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <a href="{{ url_for('get_all_arts') }}" methods="POST">
+                                    <button type="submit"  class="form-control btn btn-info submit px-3">Sign In</button>
+                                </a>
+
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50">
+                                    <label class="checkbox-wrap checkbox-primary">Remember Me
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="w-50 text-md-right">
+                                    <a href="#" style="color: #fff">Forgot Password</a>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                        <div class="social d-flex text-center">
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiwh6qPqtj4AhUN9DgGHfHuDmAQFnoECAUQAQ&url=https%3A%2F%2Fwww.facebook.com%2Flogin%2F&usg=AOvVaw2NEj8NwnxhOue64pSijk7e" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>
+                                Facebook</a>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiTqY2lqtj4AhViumMGHf7IDUoQFnoECAUQAQ&url=https%3A%2F%2Ftwitter.com%2Flogin&usg=AOvVaw3swNPrVfKaBGiX8TGfSpkN" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span>
+                                Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="static/assets/dist/js/jquery.min.js"></script>
+    <script src="static/assets/dist/js/popper.js"></script>
+    <script src="static/assets/dist/js/bootstrap.min.js"></script>
+    <script src="static/assets/dist/js/main.js"></script>
+</header>
+{% endblock %}
+</body>
+</html>
+

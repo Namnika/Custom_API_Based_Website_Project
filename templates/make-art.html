@@ -1,0 +1,170 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link target="_blank" rel="icon" type="image/x-icon" href="../static/images/icons8-camera.gif">
+    <title>New Art</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,200"/>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .fa:hover {
+        color: #858587 !important;
+      }
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+{% block content %}
+
+<!--HEADER-->
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted login-hover">This Album is based on web application so, it won't work on
+                        android or iOS!!
+                        Extracted Data is based on HTTP requests & REST API and which is referred to artworks of old
+                        artists and their cultural religions.
+                        I developed by using Python Flask, flask_sqlalchemy, Bootstrap5, WTForms.
+                        Moreover, I made my blogpost too! here's the <a
+                                href="https://bangnam7-blog.herokuapp.com">link</a>, grab it!! :)</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjHpre95NX4AhWIEIgKHSl9BZsQFnoECAwQAQ&url=https%3A%2F%2Ftwitter.com%2Flogin&usg=AOvVaw3swNPrVfKaBGiX8TGfSpkN"
+                               class="text-white"><i class="fa fa-twitter" style="font-size:24px"></i></a></li>
+                        <li>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwilyvbz5NX4AhUK7TgGHWeQDAgQjBB6BAgHEAE&url=https%3A%2F%2Fwww.facebook.com%2Flogin%2F&usg=AOvVaw2NEj8NwnxhOue64pSijk7e"
+                               class="text-white"><i style="font-size:24px" class="fa">&#xf082;</i></a></li>
+                        <li>
+                            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiww4OE5dX4AhU5xjgGHQaxAzAQjBB6BAgDEAE&url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Flogin%2F&usg=AOvVaw0BRCgcMCVNSSLcNcVjPzsz"
+                               class="text-white"><i style="font-size:24px" class="fa">&#xf16d;</i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+                     viewBox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <strong>Album</strong>
+            </a>
+
+            <p><a class="text-white" href="{{ url_for('get_all_arts') }}"><i
+                    style="font-size: 30px; padding-left: 200px; padding-top: 18px; margin-left: 357px; "
+                    class="fa fa-home"></i></a>
+                <a class="text-white" href="{{ url_for('logout') }}"><span style="font-size: 24px; padding-left: 40px;"
+                                                                           class="material-symbols-rounded">logout</span></a>
+            </p>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<!--MAIN-->
+<main>
+    <header style="background-image: url('https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')">
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                {% if is_edit: %}
+                <div class="col-lg-6 col-md-8 mx-auto">
+
+                    <h1 class="fw-light">Edit Art</h1>
+                    {% else: %}
+                    <h1 class="fw-light">New Art</h1>
+                    {% endif %}
+                    <p class="lead text-muted">You'll make this album great!</p>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <section class="py-5  container">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <p class="lead text-muted art">
+
+                    {{ wtf.quick_form(form, button_map={'submit': "dark"} ) }}
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='comment_body') }}
+
+</main>
+{% endblock %}
+
+
+<!--FOOTER-->
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#" type="button" class="btn btn-white btn-sm btn-outline-secondary"><span
+                    class="material-symbols-outlined">keyboard_double_arrow_up</span></a>
+        </p>
+        <p>&copy; 2022 Copyright Album. All rights reserved.</p>
+        <p class="mb-0"><i style="font-size:24px" class="fa">&#xf09b;</i> Designed By Namnika :)</p>
+    </div>
+</footer>
+<script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
