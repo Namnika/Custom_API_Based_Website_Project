@@ -13,20 +13,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from forms import LoginForm, SignUpForm, CommentForm, CreateArtForm
 
-client_id = os.environ['CLIENT_ID']
-client_secret = os.environ['CLIENT_SECRET']
+
 EMAIL = "YOUR EMAIL"
 PASS = "YOUR PASSWORD"
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = "a676c2fb3dcf8ae3b3f593b44b88c114"
-app.config['SECRET_ID'] = "ebb08645df72cc48c350"
+#"a676c2fb3dcf8ae3b3f593b44b88c114"
+#"ebb08645df72cc48c350"
+app.config['SECRET_KEY'] = os.environ['CLIENT_ID']
+app.config['SECRET_ID'] = os.environ['CLIENT_SECRET']
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# CONNECT TO DB********
+# *****CONNECT TO DB********
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///arts-album.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -36,6 +37,8 @@ db = SQLAlchemy(app)
 # ******AUTHENTICATION and WORK API********
 # below code is comment because the api token has already expired and data has been extract from art api
 
+# client_id = os.environ['CLIENT_ID']
+# client_secret = os.environ['CLIENT_SECRET']
 
 # api_url = "https://api.artsy.net/api/tokens/xapp_token"
 # parameters = {
