@@ -148,7 +148,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(250), unique=True, nullable=False)  # should be checked by username
 
 
-# db.create_all()
+db.create_all()
 
 class Adminart(db.Model):
     __tablename__ = "artist_artworks"
@@ -185,7 +185,7 @@ class Adminart(db.Model):
     admin = relationship('User', back_populates='arts')
 
 
-# db.create_all()
+db.create_all()
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -199,7 +199,7 @@ class Comment(db.Model):
     body = db.Column(db.Text, nullable=False)
 
 
-# db.create_all()
+db.create_all()
 
 def admin_only(f):
     @wraps(f)
