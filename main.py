@@ -18,8 +18,7 @@ EMAIL = "YOUR EMAIL"
 PASS = "YOUR PASSWORD"
 app = Flask(__name__)
 
-#"a676c2fb3dcf8ae3b3f593b44b88c114"
-#"ebb08645df72cc48c350"
+
 app.config['SECRET_KEY'] = os.environ['CLIENT_ID']
 app.config['SECRET_ID'] = os.environ['CLIENT_SECRET']
 ckeditor = CKEditor(app)
