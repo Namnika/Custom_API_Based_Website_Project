@@ -3,7 +3,7 @@ from datetime import datetime
 from functools import wraps
 
 from flask import Flask, render_template, redirect, url_for, request, flash, abort
-from flask_bootstrap import Bootstrap4
+from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "a676c2fb3dcf8ae3b3f593b44b88c114"
 app.config['SECRET_ID'] = "ebb08645df72cc48c350"
 ckeditor = CKEditor(app)
-Bootstrap4(app)
+Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
