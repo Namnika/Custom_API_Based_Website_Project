@@ -32,7 +32,7 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///arts-album.db')
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///arts-album.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -220,7 +220,7 @@ def admin_only(f):
 def get_all_arts():
     arts = Adminart.query.all()
 
-    return render_template("index.html", all_arts=arts, date=datetime.today().strftime('%B %d %Y'),)
+    return render_template("index.html", all_arts=arts, date=datetime.today().strftime('%B %d %Y'))
 
 
 # *****LOGIN*******
