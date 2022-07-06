@@ -27,12 +27,12 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # *****CONNECT TO DB********
-uri = os.getenv("DATABASE_URL")
+uri = os.getenv("DATABASE_URL1")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///arts-album.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL1', 'sqlite:///arts-album.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
