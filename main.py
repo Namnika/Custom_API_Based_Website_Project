@@ -3,7 +3,7 @@ from datetime import datetime
 from functools import wraps
 
 from flask import Flask, render_template, redirect, url_for, request, flash, abort
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "a676c2fb3dcf8ae3b3f593b44b88c114"
 app.config['SECRET_ID'] = "ebb08645df72cc48c350"
 ckeditor = CKEditor(app)
-Bootstrap(app)
+Bootstrap5(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -210,11 +210,11 @@ def admin_only(f):
 
 
 # ******READ ALL ARTS**********
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def get_all_arts():
     arts = Adminart.query.all()
-    dt = datetime.today().strftime('%B %m %Y')
-    return render_template("index.html", all_arts=arts, date=dt)
+
+    return render_template("index.html", all_arts=arts, date=datetime.today().strftime('%B %d %Y'),)
 
 
 # *****LOGIN*******
@@ -252,11 +252,9 @@ def sign_up():
             flash("You've already signed up with that email, log in instead!")
             return redirect(url_for('login'))
         new_user = User()
-
         new_user.email = request.form['email']
         new_user.password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=8)
         new_user.username = request.form['Username']
-        print(new_user.password)
 
         db.session.add(new_user)
         db.session.commit()
@@ -276,8 +274,6 @@ def logout():
 def view_art(artist_artworks_id):
     requested_art = Adminart.query.get(artist_artworks_id)
     form = CommentForm()
-    print(artist_artworks_id)
-    dt = datetime.today().strftime('%B %d %Y')
     if form.validate_on_submit():
         if not current_user.is_authenticated:
             flash("You need to login or sign up to comment.")
@@ -285,7 +281,7 @@ def view_art(artist_artworks_id):
         new_comment = Comment(body=form.comment_body.data, comment_user=current_user, admin_post=requested_art)
         db.session.add(new_comment)
         db.session.commit()
-    return render_template("art.html", date=dt, art=requested_art, form=form, current_user=current_user)
+    return render_template("art.html", art=requested_art, form=form, current_user=current_user)
 
 
 # *******ADDING RECORD**********
